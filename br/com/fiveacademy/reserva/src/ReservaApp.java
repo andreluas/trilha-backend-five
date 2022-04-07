@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import br.com.fiveacademy.reserva.src.entities.Log;
 import br.com.fiveacademy.reserva.src.entities.Rota;
 import br.com.fiveacademy.reserva.src.entities.Usuario;
 import br.com.fiveacademy.reserva.src.services.FormataCpf;
@@ -15,6 +16,7 @@ public class ReservaApp {
         Scanner sc = new Scanner(System.in);
         List<Usuario> usuarios = new ArrayList<>();
         List<Rota> rotas = new ArrayList<>();
+        List<Log> logs = new ArrayList<>();
 
         Rota rota1 = new Rota();
         rota1.setNumero(121);
@@ -89,6 +91,7 @@ public class ReservaApp {
                         System.out.println("[1] - Reservar uma rota");
                         System.out.println("[2] - Cancelar uma reserva");
                         System.out.println("[3] - Visualizar minhas reservas");
+                        System.out.println("[4] - Relatório de Logs");
                         System.out.println("[0] - Sair");
                         System.out.print("Opção: ");
                         opcao = sc.nextInt();
@@ -103,7 +106,10 @@ public class ReservaApp {
                                 if (rota.getNumero() == rotaEscolhida) {
                                     for (Usuario usuario : usuarios) {
                                         if (usuario.getCpf().equals(cpfValidado)) {
+                                            Log log = new Log();
                                             usuario.buyRota(rota);
+                                            log.comprarRota(rota, usuario);
+                                            logs.add(log);
                                             VoltarMenu.voltarMenu(sc);
                                         }
                                     }
@@ -131,8 +137,11 @@ public class ReservaApp {
 
                             for (Rota rota : rotasUsuario) {
                                 if (rota.getNumero() == rotaEscolhida) {
+                                    Log log = new Log();
                                     rotasUsuario.remove(rota);
                                     rota.adicionaAssento();
+                                    log.cancelarRota(rota, usuarioSelecionado);
+                                    logs.add(log);
                                     VoltarMenu.voltarMenu(sc);
 
                                     System.out.println("Cancelamento realizado!");
@@ -153,6 +162,22 @@ public class ReservaApp {
                                 } else {
                                     rotasUsuario.forEach(System.out::println);
                                 }
+                            }
+                        }
+
+                        if (opcao == 4) {
+                            System.out.println("********************\n RELATORIO DE LOGS \n********************");
+
+                            if (logs.isEmpty()) {
+                                System.out.println("Nenhum log de transação capturado!");
+                            } else {
+                                logs.forEach(System.out::println);
+                            }
+
+                            System.out.print("\n\n0 - Voltar ao menu: ");
+                            int menu = sc.nextInt();
+                            if (menu == 0) {
+                                VoltarMenu.voltarMenu(sc);
                             }
                         }
 
