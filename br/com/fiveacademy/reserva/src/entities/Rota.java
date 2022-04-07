@@ -1,4 +1,4 @@
-package br.com.fiveacademy.reserva.entities;
+package br.com.fiveacademy.reserva.src.entities;
 
 public class Rota {
 

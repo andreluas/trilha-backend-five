@@ -1,4 +1,4 @@
-package br.com.fiveacademy.reserva.entities;
+package br.com.fiveacademy.reserva.src.entities;
 
 import java.text.ParseException;
 import java.util.ArrayList;

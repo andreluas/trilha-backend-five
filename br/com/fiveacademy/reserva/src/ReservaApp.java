@@ -1,14 +1,14 @@
-package br.com.fiveacademy.reserva;
+package br.com.fiveacademy.reserva.src;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import br.com.fiveacademy.reserva.entities.Rota;
-import br.com.fiveacademy.reserva.entities.Usuario;
-import br.com.fiveacademy.reserva.services.FormataCpf;
-import br.com.fiveacademy.reserva.services.VoltarMenu;
+import br.com.fiveacademy.reserva.src.entities.Rota;
+import br.com.fiveacademy.reserva.src.entities.Usuario;
+import br.com.fiveacademy.reserva.src.services.FormataCpf;
+import br.com.fiveacademy.reserva.src.services.VoltarMenu;
 
 public class ReservaApp {
     public static void main(String[] args) throws Exception {

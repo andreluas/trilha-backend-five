@@ -1,4 +1,4 @@
-package br.com.fiveacademy.reserva.services;
+package br.com.fiveacademy.reserva.src.services;
 
 import java.io.IOException;
 import java.util.Scanner;
