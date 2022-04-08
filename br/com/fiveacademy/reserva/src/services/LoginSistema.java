@@ -12,7 +12,8 @@ import br.com.fiveacademy.reserva.src.entities.Usuario;
 
 public class LoginSistema {
 
-    public void logarSistema(List<Usuario> usuarios, List<Rota> rotas, List<Log> logs) throws ParseException, InterruptedException, IOException {
+    public void logarSistema(List<Usuario> usuarios, List<Rota> rotas, List<Log> logs)
+            throws ParseException, InterruptedException, IOException {
 
         Scanner sc = new Scanner(System.in);
         FormataCpf formataCpf = new FormataCpf();
@@ -103,8 +104,17 @@ public class LoginSistema {
                 }
 
                 if (opcao == 3) {
-                    ReservasUsuario reservas = new ReservasUsuario();
-                    reservas.reservasUsuario(usuarios);
+                    for (Usuario usuario : usuarios) {
+                        if (usuario.getCpf().equals(cpfValidado)) {
+                            List<Rota> rotasUsuario = usuario.getRotas();
+
+                            if (rotasUsuario.isEmpty()) {
+                                System.out.println("Não existe nenhuma reserva para você!");
+                            } else {
+                                rotasUsuario.forEach(System.out::println);
+                            }
+                        }
+                    }
                 }
 
                 if (opcao == 4) {
