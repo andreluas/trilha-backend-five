@@ -48,73 +48,18 @@ public class LoginSistema {
                 VoltarMenu.voltarMenu(sc);
 
                 if (opcao == 1) {
-                    rotas.forEach(System.out::println);
-                    System.out.print("Digite o número da rota desejada: ");
-                    int rotaEscolhida = sc.nextInt();
-
-                    for (Rota rota : rotas) {
-                        if (rota.getNumero() == rotaEscolhida) {
-                            for (Usuario usuario : usuarios) {
-                                if (usuario.getCpf().equals(cpfValidado)) {
-                                    Log log = new Log();
-                                    usuario.buyRota(rota);
-                                    log.comprarRota(rota, usuario);
-                                    logs.add(log);
-                                    VoltarMenu.voltarMenu(sc);
-                                }
-                            }
-
-                            rota.subtraiAssento();
-                            System.out.println("Rota adicionada!");
-                        }
-                    }
+                    ReservarRota reserva = new ReservarRota();
+                    reserva.reservarRota(rotas, usuarios, logs, cpfValidado);
                 }
 
                 if (opcao == 2) {
-                    System.out.print("Digite o número da rota desejada, para exclusão: ");
-                    int rotaEscolhida = sc.nextInt();
-
-                    Usuario usuarioSelecionado = new Usuario();
-
-                    for (int i = 0; i < usuarios.size(); i++) {
-                        if (usuarios.get(i).getCpf().equals(cpfValidado)) {
-                            Usuario usuarioCapturado = usuarios.get(i);
-                            usuarioSelecionado = usuarioCapturado;
-                        }
-                    }
-
-                    List<Rota> rotasUsuario = usuarioSelecionado.getRotas();
-
-                    for (Rota rota : rotasUsuario) {
-                        if (rota.getNumero() == rotaEscolhida) {
-                            Log log = new Log();
-                            rotasUsuario.remove(rota);
-                            rota.adicionaAssento();
-                            log.cancelarRota(rota, usuarioSelecionado);
-                            logs.add(log);
-                            VoltarMenu.voltarMenu(sc);
-
-                            System.out.println("Cancelamento realizado!");
-
-                            break;
-                        } else {
-                            System.out.println("Nenhuma rota cadastrada!");
-                        }
-                    }
+                    CancelarReserva cancelarReserva = new CancelarReserva();
+                    cancelarReserva.cancelarReserva(usuarios, logs, cpfValidado);
                 }
 
                 if (opcao == 3) {
-                    for (Usuario usuario : usuarios) {
-                        if (usuario.getCpf().equals(cpfValidado)) {
-                            List<Rota> rotasUsuario = usuario.getRotas();
-
-                            if (rotasUsuario.isEmpty()) {
-                                System.out.println("Não existe nenhuma reserva para você!");
-                            } else {
-                                rotasUsuario.forEach(System.out::println);
-                            }
-                        }
-                    }
+                    VisualizarReservas visualizarReservas = new VisualizarReservas();
+                    visualizarReservas.visualizarReservas(usuarios, cpfValidado);
                 }
 
                 if (opcao == 4) {
