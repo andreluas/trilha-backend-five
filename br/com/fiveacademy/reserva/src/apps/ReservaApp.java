@@ -1,4 +1,4 @@
-package br.com.fiveacademy.reserva.src;
+package br.com.fiveacademy.reserva.src.apps;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,9 @@ import br.com.fiveacademy.reserva.src.services.RotasDisponiveis;
 import br.com.fiveacademy.reserva.src.services.VoltarMenu;
 
 public class ReservaApp {
-    public static void main(String[] args) throws Exception {
+
+    public void iniciarSistema() throws Exception {
+
         Scanner sc = new Scanner(System.in);
         List<Usuario> usuarios = new ArrayList<>();
         List<Rota> rotas = new ArrayList<>();
@@ -54,5 +56,4 @@ public class ReservaApp {
 
         sc.close();
     }
-
 }
